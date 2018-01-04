@@ -1,0 +1,23 @@
+inherit ocaml
+
+NAME="ocaml-ctypes"
+VERSION=0.13.1
+RELEASE=1
+CATEGORY="OCaml"
+SUMMARY="OCaml ctypes library"
+DESCRIPTION="ctypes is a library for binding to C libraries using pure OCaml.
+The primary aim is to make writing C extensions as straightforward as possible."
+HOMEPAGE="https://github.com/ocamllabs/ocaml-ctypes"
+SRC_URI="${HOMEPAGE}/archive/${VERSION}/ocaml-ctypes-${VERSION}.tar.gz"
+PATCH_URI="0.13.1-tests-lwt.patch"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake -j1
+}
+
+src_test() {
+	cd ${B}
+	make test
+}
